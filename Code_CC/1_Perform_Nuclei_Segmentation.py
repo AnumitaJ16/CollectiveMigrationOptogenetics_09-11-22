@@ -37,7 +37,7 @@ lbl_cmap = random_label_cmap()
 date = '20210722'
 pos = 1
 
-imgs = imageio.volread("F:/CollectiveMigrationData/Raw/"+date+"/"+str(pos)+".tif")
+imgs = imageio.volread("D:/CollectiveMigrationData/Raw/"+date+"/Position"+str(pos)+".tif")
 
 batch = []
 for im in imgs:
@@ -67,7 +67,7 @@ ax.set_title(f"Number of detected cells: {nb_detected_cells}.")
 #%% IV. Make predictions on the full dataset
 
 # CHANGE SAVE PATH here
-save_path = "F:/CollectiveMigrationData/Predictions/"+date+"/Predictions_"+str(pos)+".tif"
+save_path = "D:/CollectiveMigrationData/Predictions/"+date+"/Predictions_Position"+str(pos)+".tif"
     
 batch_predictions = []
 t0 = time.time()

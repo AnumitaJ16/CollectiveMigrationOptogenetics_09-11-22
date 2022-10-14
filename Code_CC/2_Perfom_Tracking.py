@@ -27,9 +27,9 @@ import napari
 date = '20210722'
 pos = 1
 
-os.chdir("F:/CollectiveMigrationData")  # root dir containg Predictions and Images Path
-predictions_path = "Predictions/"+date+"/Predictions_"+str(pos)+".tif" #Path of predictions
-corresponding_imgs = "Raw/"+date+"/"+str(pos)+".tif" #Path of fluoro images
+os.chdir("D:/CollectiveMigrationData")  # root dir containg Predictions and Images Path
+predictions_path = "Predictions/"+date+"/Predictions_Position"+str(pos)+".tif" #Path of predictions
+corresponding_imgs = "Raw/"+date+"/Position"+str(pos)+".tif" #Path of fluoro images
 
 predictions = imageio.volread(predictions_path)
 # predictions = pims.open(predictions_path)
@@ -110,7 +110,7 @@ positions_per_frame.head()
 #%% III. Peform tracking using the surface and position of each cell at each time point
 
 # perform the tracking step
-max_search_radius = 300  # maximum distance made by
+max_search_radius = 200  # maximum distance made by
 tracks = tp.link(positions_per_frame, max_search_radius, memory=1)
 
 # reformat the tracking results to display them
@@ -124,7 +124,7 @@ tracks_to_napari.head()
 #%% Saving tracking results to a csv file
 
 # saving the tracking results
-save_path = "D:/Hugo/Migration/Position2_tracking_results.csv"
+save_path = "D:/CollectiveMigrationData/Data_Timeseries/"+date+"/Position"+str(pos)+"_tracking_results.csv"
 tracks.to_csv(save_path, sep=",", index=False)
 
 #%% Diplaying tracks using Napari

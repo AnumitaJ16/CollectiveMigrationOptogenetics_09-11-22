@@ -8,6 +8,7 @@ Created on Mon Oct  3 21:26:21 2022
 
 import os
 import numpy as np
+import matplotlib.pyplot as plt
 from skimage import io, exposure
 
 #%%
@@ -49,7 +50,10 @@ def renameFiles(DirPath, startingNo = 0):
                 j+=1
 
 def getLineMask(DirLines, speed):
-    ic = io.imread_collection(DirLines+'/'+speed+'/*.tif')
+    dirPath = DirLines+'/'+speed
+    file_spec = '*.tif'
+    load_pattern = os.path.join(dirPath, file_spec)
+    ic = io.imread_collection(load_pattern)
     imgArray = np.uint8(io.concatenate_images(ic))
     
     lineMask = np.mean(imgArray, axis = 2).T
@@ -61,5 +65,6 @@ def getLineMask(DirLines, speed):
     imgArray_scaled.max()
     imgArray_scaled.min()
     scaledArray = np.round(imgArray_scaled)
+    plt.imshow(scaledArray)
     return scaledArray
 
